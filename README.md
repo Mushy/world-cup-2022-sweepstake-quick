@@ -1,4 +1,4 @@
-# Eurovision 2021 Sweepstake Generator.
+# UEFA Euro 2020 Sweepstake Generator.
 
 ## About
 This is a quick and dirty sweepstake generator for the UEFA Euro 2020 (played in 2021) competition for some fun in work. I am not a JS developer nor front end developer so design and responsive are lacking (responsive not even looked at) and the Javascript behind it will make the baby Jesus weep. At some point I will ideally go back and clean up the code... but that isn't very likely unfortunately.
