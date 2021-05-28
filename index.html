@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euro 2020 Sweepstake Picker</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+	<img src="images/euro2020_negative.svg" height="116" class="eurovision-logo">
+
+	<ul>
+		<li>Countries: <div id="countryCount">0</div></li>
+		<li>Players: <div id="playerCount">0</div></li>
+		<li>Countries/Player: <div id="countriesPerPlayer">0</div></li>
+		<li>CPU Countries: <div id="floatingCountries">0</div></li>
+	</ul>
+</header>
+
+<div class="container">
+	<div class="side-bar">
+		<button type="button" class="js-quickAssign">Quick Assign</button>
+		<button type="button" class="js-stepAssign">Step Assign</button>
+		<button type="button" class="js-singleAssign">Single Assign</button>
+		<button type="button" class="js-clearSweeps">Clear Sweeps</button>
+
+		<div class="js-assignInfo">
+			<p>Assigning Country <span id="stt-currentCountry">0</span>/<span id="stt-countriesTotal">0</span></p>
+		</div>
+
+		<h2>Player List</h2>
+		<p id="playerList"></p>
+	</div>
+
+	<div class="log">
+		<div class="log-entries"></div>
+	</div>
+
+	<div class="assigns"></div>
+</div>
+
+<script src="js/js.js"></script>
+<script>
+let cpu = new player('CPU');
+// Because I don't want to type these every time lets just add them here for now...
+addPlayer('Colin');
+addPlayer('Tom');
+addPlayer('Stephen');
+addPlayer('Andy');
+addPlayer('John');
+addPlayer('Cath');
+addPlayer('Martin');
+addPlayer('Connor');
+addPlayer('Mia');
+addPlayer('Samara');
+addPlayer('Gill');
+addPlayer('Carl');
+
+// Group, Country, ISO2, Probability || Stats: Times Qualified, Highest Finish, Wins, 2016 Finish Position
+addCountry('A', 'Italy', 'IT', '8.3', '10', '1st', '1', '6th');
+addCountry('A', 'Switzerland', 'CH', '1.2', '5', '11th', '0', '11th');
+addCountry('A', 'Turkey', 'TR', '1.2', '5', '3rd', '0', '17th');
+addCountry('A', 'Wales', 'GB-WLS', '0.5', '2', '3rd', '0', '3rd');
+addCountry('B', 'Belgium', 'BE', '13.3', '6', '2nd', '0', '7th');
+addCountry('B', 'Russia', 'RU', '0.8', '12', '1st', '1', '23rd');
+addCountry('B', 'Denmark', 'DK', '1.2', '9', '1st', '1', 'DNQ');
+addCountry('B', 'Finland', 'FI', '0.2', '1', '-', '0', 'DNQ');
+addCountry('C', 'Ukraine (Soviet Union)', 'UA', '0.8', '3 (5 +1 dissolve)', '13th (1st)', '0 (1)', '24th');
+addCountry('C', 'Netherlands', 'NL', '7.7', '10', '1st', '1', 'DNQ');
+addCountry('C', 'Austria', 'AT', '0.8', '3', '13th', '0', '19th');
+addCountry('C', 'North Macedonia (Yugoslavia)', 'MK', '0.2', '1 (5 +1 ban)', '- (2nd)', '0 (0)', 'DNQ');
+addCountry('D', 'England', 'GB-ENG', '16.7', '10', '3rd', '0', '12th');
+addCountry('D', 'Croatia (Yugoslavia)', 'HR', '2.4', '6 (5 +1 ban)', '5th (2nd)', '0 (0)', '9th');
+addCountry('D', 'Czech Republic (Czechoslovakia)', 'CZ', '0.4', '7 (3)', '2nd (1st)', '0 (1)', '21st');
+addCountry('D', 'Scotland', 'GB-SCT', '0.2', '3', '?', '0', 'DNQ');
+addCountry('E', 'Spain', 'ES', '11.1', '11', '1st', '3', '10th');
+addCountry('E', 'Poland', 'PL', '1', '4', '5th', '0', '5th');
+addCountry('E', 'Sweden', 'SE', '0.8', '7', '3rd', '0', '20th');
+addCountry('E', 'Slovakia (Czechoslovakia)', 'SK', '0.2', '2 (3)', '14th (1st)', '0 (1)', '14th');
+addCountry('F', 'Germany', 'DE', '10', '14', '1st', '3', '4th');
+addCountry('F', 'France', 'FR', '16.7', '10', '1st', '2', '2nd');
+addCountry('F', 'Portugal', 'PT', '7.1', '8', '1st', '1', '1st');
+addCountry('F', 'Hungary', 'HU', '0.2', '4', '3rd', '0', '13th');
+</script>
+</body>
+</html>
