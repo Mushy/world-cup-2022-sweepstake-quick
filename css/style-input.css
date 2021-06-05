@@ -30,19 +30,23 @@ ul {
 
 input {
     width: 20px;
-    justify-self: center;
 }
 
-label {
+.matches label~label {
+    text-align: left;
+}
+
+.matches label {
     padding: 10px;
+    text-align: right;
+    flex: 1;
 }
-
-.matches {}
 
 .row {
     padding: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
 }
 
 .row input {
