@@ -1,0 +1,66 @@
+::-webkit-scrollbar {
+    width: 5px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(15, 142, 160, .8);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-image: url(../images/euro-bg.webp);
+    background-size: cover;
+    color: #EEE;
+    text-align: center;
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+}
+
+input {
+    width: 20px;
+    justify-self: center;
+}
+
+label {
+    padding: 10px;
+}
+
+.matches {}
+
+.row {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.row input {
+    align-self: center;
+}
+
+.inputname {
+    width: 200px;
+}
+
+button {
+    border-radius: 20px;
+    background: #eee;
+    color: #000;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button:hover {
+    background-color: #039db541
+}

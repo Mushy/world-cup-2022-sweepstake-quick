@@ -44,18 +44,36 @@ $matches = [
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Euro 2020 Score Predictions</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="css/style-input.css">
+
+<title>Euro 2020 Score Prediction Game</title>
 </head>
 <body>
-<h1>Score Predictions</h1>
+<h1>Euro 2020 (Yes, Still) Score Prediction Game</h1>
+<img src="images/euro2020_negative.svg" width="300px">
+<p>Welcome to the Euro 2020 Score Prediction Game, the rules are simple...</p>
+<ul>
+	<li>Guess the scores to each game.</li>
+	<li>The more you get right, the more points you get.</li>
+	<li>Get more points than everyone else.</li>
+</ul>
+<h2>Instructions</h2>
+<p>Is this not simple enough for you?</p>
 <p>Enter your predicted scores below. This is just for the group stages, another version will be around for the knockout, etc stages.</p>
 <p>You have until kick off of the first game to submit your scores, any scores submitted after a game has started will not be counted on a per game basis.<br>e.g. You submit your scores after the 3rd game has started your first 3 games will be 0 points.</p>
 <form method="post" action="predictions_submit.php">
 	<div class="row">
-		<label for="name">Name</label>
-		<input type="text" name="name" id="name">
+		<label for="name">First Name / Nickname</label>
+		<input class="inputname" type="text" name="name" id="name">
 	</div>
-
+	<div class="matches">
 	<?php
 	$i = 0;
 	$i_score = 1;
@@ -72,6 +90,8 @@ $matches = [
 		echo '</div>';
 	}
 	?>
+
+	</div>
 
 	<div class="row">
 		<button type="submit">Save Predictions</button>
