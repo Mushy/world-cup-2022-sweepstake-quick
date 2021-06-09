@@ -30,11 +30,6 @@ runClearSweeps.addEventListener('click', () => {
 const runSingleAssign = document.querySelector('.js-singleAssign');
 runSingleAssign.addEventListener('click', () => {
 	if (stepPosition > 0) {
-		// document.querySelector('.artist-holder').style.opacity = 0;
-		// document.querySelector('.js-singingFor').style.opacity = 0;
-		// document.querySelector('.assigned-to').style.opacity = 0;
-
-
 		document.querySelector('.artist-holder').style.opacity = 0;
 		document.querySelector('.js-singingFor').style.opacity = 0;
 		document.querySelector('.assigned-to').style.opacity = 0;
@@ -309,10 +304,12 @@ function setNextCountry(timerPlayerNameIn, timerCountryNameIn, timerFlagGrow, ti
 function assignCountryTo(playerName, playerNumber, tableRow, timerPanelName) {
 	document.querySelector('.assigned-to').innerText = playerName;
 
+	currCountryOnly = currCountryName.split(' (');
+
 	let tbl = document.querySelector('#player-table_'+(playerNumber));
 	let rows = tbl.rows;
 	rows[tableRow].cells[0].innerHTML = `<img src="flags/1x1/${currCountryFlag}.svg" width="20" height="20">`;
-	rows[tableRow].cells[1].innerHTML = `${currCountryName}<br>Group ${currCountryGroup}, ${currCountryProbability}% Chance`;
+	rows[tableRow].cells[1].innerHTML = `${currCountryOnly[0]}<br>Group ${currCountryGroup}, ${currCountryProbability}% Chance`;
 
 	setTimeout(function() {
 		rows[tableRow].classList.add('is-visible');
