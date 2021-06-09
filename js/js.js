@@ -304,10 +304,12 @@ function setNextCountry(timerPlayerNameIn, timerCountryNameIn, timerFlagGrow, ti
 function assignCountryTo(playerName, playerNumber, tableRow, timerPanelName) {
     document.querySelector('.assigned-to').innerText = playerName;
 
+	let currCountryOnly = currCountryName.split(' (');
+
     let tbl = document.querySelector('#player-table_' + (playerNumber));
     let rows = tbl.rows;
     rows[tableRow].cells[0].innerHTML = `<img src="flags/1x1/${currCountryFlag}.svg" width="20" height="20">`;
-    rows[tableRow].cells[1].innerHTML = `${currCountryName},( ${currCountryProbability}% )`;
+    rows[tableRow].cells[1].innerHTML = `${currCountryOnly[0]},( ${currCountryProbability}% )`;
 
     setTimeout(function() {
         rows[tableRow].classList.add('is-visible');
