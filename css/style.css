@@ -321,6 +321,7 @@ td img {
 	flex-wrap: wrap;
 	gap: 5%;
 	margin-top: 10px;
+	border-top: 1px solid #EEE;
 }
 
 .stat {
