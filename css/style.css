@@ -24,7 +24,6 @@ body {
 }
 
 header {
-	/* background-color: #0b062e; */
 	color: #FFF;
 	padding: 20px;
 	display: flex;
@@ -60,7 +59,6 @@ header div {
 }
 
 .side-bar {
-	/* background-color: #0b062e; */
 	color: #FFF;
 	width: 20%;
 	padding: 15px;
@@ -151,7 +149,6 @@ button:hover {
 	width: 25%;
 }
 
-
 .artist-holder {
 	margin-top: 15px;
 	transition: opacity .3s ease-in;
@@ -162,30 +159,45 @@ button:hover {
 .slide-container {
 	position: relative;
 	display: flex;
+	box-shadow: inset 0 0 1px #000E;
+	width: 93%;
+	margin-left: 3.5%;
 }
 
 .artist-img {
 	transition: transform .3s ease-in;
 	flex: 0 0 100%;
+	padding: 1px;
 }
 
 .artist-img img {
 	max-width: 100%;
-	border-radius: 10px;
+	display: block;
 }
 
-.artist-country {
+.team-group {
+	display: flex;
+}
+
+.artist-country,
+.in-group {
 	border: 1px solid #0002;
 	width: fit-content;
 	padding: 5px 30px;
 	border-radius: 50px;
-	transform: translateY(-70%);
+	transform: translateY(-50%);
 	background: #FFF;
 	display: flex;
 	place-items: center;
 	font-weight: bold;
 	font-size: 16px;
-	margin-left: 30px;
+	margin-left: 50px;
+	box-shadow: 1px 1px 2px #000E;
+}
+
+.in-group {
+	margin-left: auto;
+	margin-right: 50px;
 }
 
 .artist-country img {
@@ -205,7 +217,7 @@ button:hover {
 }
 
 .assigned h3 {
-	margin-top: -20px;
+	margin: 0 auto;
 	font-size: 50px;
 	text-align: center;
 	transition: opacity .3s ease-in;
@@ -217,7 +229,6 @@ button:hover {
 	font-size: 50px;
 	transition: opacity 1s ease-in;
 	opacity: 0;
-	margin-top: -20px;
 }
 
 .toggle-content {
@@ -243,8 +254,6 @@ td img {
 	padding-bottom: 52.25%; /* 16:9 */
 	height: 0;
 	transition: transform .3s ease-in;
-	/* width: 748px;
-	height: 398px; */
 	flex: 0 0 100%;
 	background-image: linear-gradient(#0003, #0003), url(../images/stats-bg.jpg);
 	border-radius: 10px;
@@ -304,4 +313,29 @@ td img {
 	font-size: 26px;
 	margin-top: 25px;
 	background-color: #FFFA;
+}
+
+.js-stats {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 5%;
+	margin-top: 10px;
+}
+
+.stat {
+	opacity: 0;
+	width: 30%;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	color: #666;
+	transition: opacity .3s ease-in;
+}
+
+.stat strong {
+	font-size: 40px;
+	color: #000;
 }

@@ -30,16 +30,26 @@ runClearSweeps.addEventListener('click', () => {
 const runSingleAssign = document.querySelector('.js-singleAssign');
 runSingleAssign.addEventListener('click', () => {
 	if (stepPosition > 0) {
+		// document.querySelector('.artist-holder').style.opacity = 0;
+		// document.querySelector('.js-singingFor').style.opacity = 0;
+		// document.querySelector('.assigned-to').style.opacity = 0;
+
+
 		document.querySelector('.artist-holder').style.opacity = 0;
 		document.querySelector('.js-singingFor').style.opacity = 0;
 		document.querySelector('.assigned-to').style.opacity = 0;
+		document.querySelector('.artist-holder').style.opacity = 0;
+		document.querySelector('.js-wins').style.opacity = 0;
+		document.querySelector('.js-euros').style.opacity = 0;
+		document.querySelector('.js-probability').style.opacity = 0;
+		document.querySelector('.js-best').style.opacity = 0;
+		document.querySelector('.js-last').style.opacity = 0;
 	}
 
 	setTimeout(function() {
 		// Slight delay to allow the above elements to fade out before switching the values around.
 		singleAssign();
 	}, 1000);
-	
 });
 
 
@@ -130,14 +140,20 @@ function buildArtist() {
 
 	let domArtistHolder = document.createElement('div');
 		domArtistHolder.classList.add('artist-holder');
-	
+
+	let domSlideContainer = document.createElement('div');
+		domSlideContainer.classList.add('slide-container');
+
 	let domArtistImgHolder = document.createElement('div');
 		domArtistImgHolder.classList.add('artist-img', 'slide-image');
 	
 	let domArtistImg = document.createElement('img');
 		domArtistImg.classList.add('js-artistImg');
 		domArtistImg.height = '390';
-	
+
+	let domTeamGroup = document.createElement('div');
+		domTeamGroup.classList.add('team-group');
+
 	let domArtistCountry = document.createElement('div');
 		domArtistCountry.classList.add('artist-country');
 
@@ -148,12 +164,12 @@ function buildArtist() {
 
 	let domCountryText = document.createElement('span');
 		domCountryText.classList.add('js-countryText');
-		
-	let domArtistName = document.createElement('h2');
-		domArtistName.classList.add('artist-name');
 
-	let domArtistSong = document.createElement('div');
-		domArtistSong.classList.add('artist-song');
+	let domInGroup = document.createElement('div');
+		domInGroup.classList.add('in-group');
+
+	let domGroupText = document.createElement('span');
+		domGroupText.classList.add('js-groupText');
 
 	let domSingingFor = document.createElement('h3');
 		domSingingFor.classList.add('js-singingFor');
@@ -162,75 +178,64 @@ function buildArtist() {
 	let domAssignedTo = document.createElement('div');
 		domAssignedTo.classList.add('assigned-to');
 
-	let domIframeHolder = document.createElement('div');
-		domIframeHolder.classList.add('videoWrapper', 'slide-video');
+	let domStats = document.createElement('div');
+		domStats.classList.add('js-stats');
+	
+	let domStatWins = document.createElement('div');
+		domStatWins.innerText = 'No. of Wins';
+		domStatWins.classList.add('stat', 'js-wins');
 
-		// I got lazy...
-		domIframeHolder.innerHTML  = `<div class="times-qualified"></div>`;
-		domIframeHolder.innerHTML += `<div class="best-finish"></div>`;
-		domIframeHolder.innerHTML += `<div class="total-wins"></div>`;
-		domIframeHolder.innerHTML += `<div class="last-tournament"></div>`;
+	let domStatWinsValue = document.createElement('strong');
 
-	let domIframe = document.createElement('iframe');
-		domIframe.width = '368px';
-		domIframe.height = '207px';
-		domIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-		domIframe.allowfullscreen = true;
-		domIframe.title = 'YouTube video player';
-		domIframe.src = 'https://www.youtube.com/embed/CoUTzNXQud0'; // If I don't set a default src it won't show on the first slide :(
-		domIframe.classList.add('js-video-frame');
+	let domStatEuros = document.createElement('div');
+		domStatEuros.innerText = 'No. of Euros';
+		domStatEuros.classList.add('stat', 'js-euros');
+	
+	let domStatEurosValue = document.createElement('strong');
 
-	let domSlideContainer = document.createElement('div');
-		domSlideContainer.classList.add('slide-container');
+	let domStatProb = document.createElement('div');
+		domStatProb.innerText = 'Win Probability';
+		domStatProb.classList.add('stat', 'js-probability');
 
-	let ctrlContainer = document.createElement('div');
-		ctrlContainer.classList.add('ctrl-container');
+	let domStatProbValue = document.createElement('strong');
 
-	let ctrlImageSlide = document.createElement('div');
-		ctrlImageSlide.classList.add('ctrl-image-slide');
-		ctrlImageSlide.innerHTML = '<i class="fas fa-chevron-left"></i>';
+	let domStatBest = document.createElement('div');
+		domStatBest.innerText = 'Best Finish';
+		domStatBest.classList.add('stat', 'js-best');
 
-	let ctrlVideoSlide = document.createElement('div');
-		ctrlVideoSlide.classList.add('ctrl-video-slide');
-		ctrlVideoSlide.innerHTML = '<i class="fas fa-chevron-right"></i>';
+	let domStatBestValue = document.createElement('strong');
+
+	let domStatLast = document.createElement('div');
+		domStatLast.innerText = '2016 Result';
+		domStatLast.classList.add('stat', 'js-last');
+
+	let domStatLastValue = document.createElement('strong');
 
 	domAssigned.appendChild(domArtistHolder);
 		domArtistHolder.appendChild(domSlideContainer);
-
-			domSlideContainer.appendChild(domIframeHolder);
-//		domArtistHolder.appendChild(domIframeHolder);
-//				domIframeHolder.appendChild(domIframe);
-//			domSlideContainer.appendChild(ctrlContainer);
-//				ctrlContainer.appendChild(ctrlImageSlide);
-//				ctrlContainer.appendChild(ctrlVideoSlide);
-			//		domArtistHolder.appendChild(domArtistImgHolder);
 			domSlideContainer.appendChild(domArtistImgHolder);
-			domArtistImgHolder.appendChild(domArtistImg);
-
-		domArtistHolder.appendChild(domArtistCountry);
-			domArtistCountry.appendChild(domCountryFlag);
-			domArtistCountry.appendChild(domCountryText);
-		domArtistHolder.appendChild(domArtistName);
-		domArtistHolder.appendChild(domArtistSong);
-	domAssigned.appendChild(domSingingFor);
-	domAssigned.appendChild(domAssignedTo);
+				domArtistImgHolder.appendChild(domArtistImg);
+		domArtistHolder.appendChild(domTeamGroup);
+			domTeamGroup.appendChild(domArtistCountry);
+				domArtistCountry.appendChild(domCountryFlag);
+				domArtistCountry.appendChild(domCountryText);
+			domTeamGroup.appendChild(domInGroup);
+				domInGroup.appendChild(domGroupText);
+		domArtistHolder.appendChild(domSingingFor);
+		domArtistHolder.appendChild(domAssignedTo);
+		domArtistHolder.appendChild(domStats);
+			domStats.appendChild(domStatWins);
+				domStatWins.appendChild(domStatWinsValue);
+			domStats.appendChild(domStatEuros);
+				domStatEuros.appendChild(domStatEurosValue);
+			domStats.appendChild(domStatProb);
+				domStatProb.appendChild(domStatProbValue);
+			domStats.appendChild(domStatBest);
+				domStatBest.appendChild(domStatBestValue);
+			domStats.appendChild(domStatLast);
+				domStatLast.appendChild(domStatLastValue);
 
 	document.querySelector('.log-entries').appendChild(domAssigned);
-
-//	let imgSlide = document.querySelector('.slide-image');
-//	let vidSlide = document.querySelector('.slide-video');
-
-//	let imgSlideCtrl = document.querySelector('.ctrl-image-slide');
-//		imgSlideCtrl.addEventListener('click', () => {
-//			vidSlide.classList.remove('slideInVid');
-//			imgSlide.classList.remove('slideOutImg');
-//		});
-
-//	let vidSlideCtrl = document.querySelector('.ctrl-video-slide');
-//		vidSlideCtrl.addEventListener('click', () => {
-//			imgSlide.classList.add('slideOutImg');
-//			vidSlide.classList.add('slideInVid');
-//		});
 }
 
 
@@ -257,18 +262,36 @@ function setNextCountry(timerPlayerNameIn, timerCountryNameIn, timerFlagGrow, ti
 	document.querySelector('.js-artistImg').src = `flags/4x3/${currCountryFlag}.svg`;
 	document.querySelector('.js-countryImg').src = `flags/4x3/${currCountryFlag}.svg`;
 	document.querySelector('.js-countryText').innerText = currCountryName;
-	document.querySelector('.artist-name').innerText = 'Group: '+countries[stepPosition].group;
-	document.querySelector('.artist-song').innerText = `Win Probability: ${countries[stepPosition].probability}%`;
-	//document.querySelector('.js-video-frame').src = countries[stepPosition].video;
-	document.querySelector('.times-qualified').innerText = `Times Qualified: ${countries[stepPosition].qualified}`;
-	document.querySelector('.best-finish').innerText = `Best Result: ${countries[stepPosition].best}`;
-	document.querySelector('.total-wins').innerText = `Wins : ${countries[stepPosition].wins}`;
-	document.querySelector('.last-tournament').innerText = `2016 Result: ${countries[stepPosition].last}`;
-
+	document.querySelector('.js-groupText').innerText = `Group ${currCountryGroup}`;
+	document.querySelector('.js-wins strong').innerText = countries[stepPosition].wins;
+	document.querySelector('.js-euros strong').innerText = countries[stepPosition].qualified;
+	document.querySelector('.js-probability strong').innerText = countries[stepPosition].probability+'%';
+	document.querySelector('.js-best strong').innerText = countries[stepPosition].best;
+	document.querySelector('.js-last strong').innerText = countries[stepPosition].last;
 
 	setTimeout(function() {
 		setTimeout(function() {
 			document.querySelector('.artist-holder').style.opacity = 1;
+
+			setTimeout(function() {
+				document.querySelector('.js-wins').style.opacity = 1;
+
+				setTimeout(function() {
+					document.querySelector('.js-euros').style.opacity = 1;
+
+					setTimeout(function() {
+						document.querySelector('.js-probability').style.opacity = 1;
+
+						setTimeout(function() {
+							document.querySelector('.js-best').style.opacity = 1;
+
+							setTimeout(function() {
+								document.querySelector('.js-last').style.opacity = 1;
+							}, 500);
+						}, 500);
+					}, 500);
+				}, 500);
+			}, 1000);
 
 			setTimeout(function() {
 				document.querySelector('.js-singingFor').style.opacity = 1;
@@ -330,12 +353,8 @@ function singleAssign() {
 	let timerCountryNameIn = 3000;
 	let timerPlayerNameIn = 3000;
 	let timerPanelName = timerStart + timerFlagGrow + timerCountryNameIn + timerPlayerNameIn;
-	let timerNextCountry = 10000;
 
 	if (stepPosition == 0) startSweep();
-
-	document.querySelector('.slide-image').classList.remove('slideOutImg');
-	document.querySelector('.slide-video').classList.remove('slideInVid');
 
 	if (stepPosition < totalCountries) {
 		setNextCountry(timerPlayerNameIn, timerCountryNameIn, timerFlagGrow, timerStart);
@@ -377,6 +396,12 @@ function stepAssign() {
 			document.querySelector('.artist-holder').style.opacity = 0;
 			document.querySelector('.js-singingFor').style.opacity = 0;
 			document.querySelector('.assigned-to').style.opacity = 0;
+			document.querySelector('.artist-holder').style.opacity = 0;
+			document.querySelector('.js-wins').style.opacity = 0;
+			document.querySelector('.js-euros').style.opacity = 0;
+			document.querySelector('.js-probability').style.opacity = 0;
+			document.querySelector('.js-best').style.opacity = 0;
+			document.querySelector('.js-last').style.opacity = 0;
 		}, (timerNextCountry - timerStart));
 
 		setTimeout(function() {
