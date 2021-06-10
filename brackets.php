@@ -3,7 +3,8 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 
 // Office players.
-$players = ['Colin', 'Tom', 'Andy', 'John', 'Stephen', 'Samara', 'Mia', 'Carl', 'Connor', 'Cath', 'Martin', 'Gill'];
+$players = ['Colin', 'Tom', 'Connor', 'Cath', 'Mia', 'Samara', 'Andy', 'Carl', 'Stephen', 'John', 'Rob', 'John A'];
+$sweepWinBonus = 15;
 
 // Teams and the group they are in.
 $teams = [
@@ -38,30 +39,30 @@ $knockout = '2A2B,1A2C,1C3D,1F3A,1D2F,1E3A';
 
 // Teams to players, generated using sweepstakes tool.
 $playerTeams = [
-	'Belgium' => 'Colin',
-	'Switzerland' => 'Colin',
-	'Ukraine' => 'Tom',
-	'Russia' => 'Tom',
-	'Hungary' => 'Andy',
-	'Slovakia' => 'Andy',
-	'Wales' => 'John',
-	'Germany' => 'John',
-	'Croatia' => 'Stephen',
-	'Czech Republic' => 'Stephen',
-	'Scotland' => 'Samara',
-	'Turkey' => 'Samara',
-	'Netherlands' => 'Mia',
-	'North Macedonia' => 'Mia',
+	'Belgium' => 'Tom',
+	'Switzerland' => 'Stephen',
+	'Ukraine' => 'Connor',
+	'Russia' => 'Colin',
+	'Hungary' => 'Carl',
+	'Slovakia' => 'Cath',
+	'Wales' => 'Tom',
+	'Germany' => 'Andy',
+	'Croatia' => 'Colin',
+	'Czech Republic' => 'Mia',
+	'Scotland' => 'Connor',
+	'Turkey' => 'John',
+	'Netherlands' => 'Samara',
+	'North Macedonia' => 'Rob',
 	'Poland' => 'Carl',
-	'Spain' => 'Carl',
-	'Finland' => 'Connor',
-	'Austria' => 'Connor',
-	'Denmark' => 'Cath',
-	'Italy' => 'Cath',
-	'Portugal' => 'Martin',
-	'England' => 'Martin',
-	'France' => 'Gill',
-	'Sweden' => 'Gill',
+	'Spain' => 'Stephen',
+	'Finland' => 'Samara',
+	'Austria' => 'John A',
+	'Denmark' => 'Rob',
+	'Italy' => 'John',
+	'Portugal' => 'Andy',
+	'England' => 'John A',
+	'France' => 'Mia',
+	'Sweden' => 'Cath',
 ];
 
 // Group match results
