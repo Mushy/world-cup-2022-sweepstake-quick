@@ -105,6 +105,46 @@ $matchesGroups = [
 	['F' => ['Portugal', 0, 0, 'France', 'np']],
 ];
 
+// Test pool
+// $matchesGroups = [
+// 	['A' => ['Turkey', 0, 2, 'Italy', 'p']],
+// 	['A' => ['Wales', 0, 2, 'Switzerland', 'p']],
+// 	['B' => ['Denmark', 2, 1, 'Finland', 'p']],
+// 	['B' => ['Belgium', 4, 0, 'Russia', 'p']],
+// 	['D' => ['England', 2, 1, 'Croatia', 'p']],
+// 	['C' => ['Austria', 0, 2, 'North Macedonia', 'p']],
+// 	['C' => ['Netherlands', 0, 0, 'Ukraine', 'np']],
+// 	['D' => ['Scotland', 0, 0, 'Czech Republic', 'np']],
+// 	['E' => ['Poland', 0, 0, 'Slovakia', 'np']],
+// 	['E' => ['Spain', 0, 0, 'Sweden', 'np']],
+// 	['F' => ['Hungary', 0, 0, 'Portugal', 'np']],
+// 	['F' => ['France', 0, 0, 'Germany', 'np']],
+// 	['B' => ['Finland', 0, 0, 'Russia', 'np']],
+// 	['A' => ['Turkey', 0, 0, 'Wales', 'np']],
+// 	['A' => ['Italy', 0, 0, 'Switzerland', 'np']],
+// 	['C' => ['Ukraine', 0, 0, 'North Macedonia', 'np']],
+// 	['B' => ['Denmark', 0, 0, 'Belgium', 'np']],
+// 	['C' => ['Netherlands', 0, 0, 'Austria', 'np']],
+// 	['E' => ['Sweden', 0, 0, 'Slovakia', 'np']],
+// 	['D' => ['Croatia', 0, 0, 'Czech Republic', 'np']],
+// 	['D' => ['England', 0, 0, 'Scotland', 'np']],
+// 	['F' => ['Hungary', 0, 0, 'France', 'np']],
+// 	['F' => ['Portugal', 0, 0, 'Germany', 'np']],
+// 	['E' => ['Spain', 0, 0, 'Poland', 'np']],
+// 	['A' => ['Italy', 0, 0, 'Wales', 'np']],
+// 	['A' => ['Switzerland', 0, 0, 'Turkey', 'np']],
+// 	['C' => ['North Macedonia', 0, 0, 'Netherlands', 'np']],
+// 	['C' => ['Ukraine', 0, 0, 'Austria', 'np']],
+// 	['B' => ['Russia', 0, 0, 'Denmark', 'np']],
+// 	['B' => ['Finland', 0, 0, 'Belgium', 'np']],
+// 	['D' => ['Czech Republic', 0, 0, 'England', 'np']],
+// 	['D' => ['Croatia', 0, 0, 'Scotland', 'np']],
+// 	['E' => ['Slovakia', 0, 0, 'Spain', 'np']],
+// 	['E' => ['Sweden', 0, 0, 'Poland', 'np']],
+// 	['F' => ['Germany', 0, 0, 'Hungary', 'np']],
+// 	['F' => ['Portugal', 0, 0, 'France', 'np']],
+// ];
+
 $playerPredictions = [
 	'Colin' => [
 		['Turkey', 1, 3, 'Italy'],
@@ -448,7 +488,7 @@ $playerPredictions = [
 		['Germany', 3, 0, 'Hungary'],
 		['Portugal', 2, 3, 'France'],
 	],
-	'Super John ' => [
+	'Super John' => [
 		['Turkey', 2, 2, 'Italy'],
 		['Wales', 2, 0, 'Switzerland'],
 		['Denmark', 2, 1, 'Finland'],
@@ -829,23 +869,68 @@ function showPredictions($tbl) {
 
 
 function showPredictionMatches() {
-	global $playerPredictions, $playerPredictionsKO, $teams;
+	global $playerPredictions, $playerPredictionsKO, $teams, $matchesGroups;
 
 	foreach ($playerPredictions as $player => $predictions) {
 		echo '<div class="group-matches group-predictions">';
 		echo '<h2>'.$player.'</h2>';
 
 		foreach ($predictions as $game) {
-			if (checkMatch($game[0], $game[3])) {
-				echo '<div class="match">';
-					echo '<div class="team-home">'.$game[0].'</div>';
-					echo '<div class="team-flag">'.showFlag($game[0]).'</div>';
-					echo '<div class="team-score">'.$game[1].'</div>';
-					echo '<div class="team-score">'.$game[2].'</div>';
-					echo '<div class="team-flag">'.showFlag($game[3]).'</div>';
-					echo '<div class="team-away">'.$game[3].'</div>';
-				echo '</div>';
+			$resultClass = '';
+			$resultScore = 0;
+			$result = 0;
+			$score = 0;
+
+			foreach ($matchesGroups as $groupMatch) {
+				foreach ($groupMatch as $k => $v) {
+					if ($v[4] == 'p' && ($v[0] == $game[0] && $v[3] == $game[3])) {
+						if ($v[1] == $game[1] && $v[2] == $game[2]) {
+							$resultScore = 1;
+							$result = 1;
+							$score = 2;
+						} else {
+							if (
+								($game[1] > $game[2] && $v[1] > $v[2]) ||
+								($game[1] < $game[2] && $v[1] < $v[2]) ||
+								($game[1] == $game[2] && $v[1] == $v[2])
+							) {
+								$result = 1;
+							}
+
+							if ($v[1] == $game[1] || $v[2] == $game[2]) {
+								$score = 1;
+							}
+						}
+
+						$scoreTotal = ($resultScore * 2) + ($result * 3) + $score;
+						$resultClass = 'f';
+						switch ($scoreTotal)
+						{
+							case 7:
+								$resultClass = 'rs';
+								break;
+							case 4:
+								$resultClass = 'r-s';
+								break;
+							case 3:
+								$resultClass = 'r';
+								break;
+							case 1:
+								$resultClass = 's';
+								break;
+						}
+					}
+				}
 			}
+
+			echo '<div class="match '. $resultClass .'">';
+				echo '<div class="team-home">'.$game[0].'</div>';
+				echo '<div class="team-flag">'.showFlag($game[0]).'</div>';
+				echo '<div class="team-score">'.$game[1].'</div>';
+				echo '<div class="team-score">'.$game[2].'</div>';
+				echo '<div class="team-flag">'.showFlag($game[3]).'</div>';
+				echo '<div class="team-away">'.$game[3].'</div>';
+			echo '</div>';
 		}
 		echo '</div>';
 
@@ -860,6 +945,102 @@ function showPredictionMatches() {
 		// 	}
 		// }
 	}
+}
+
+
+
+function showPlayerPredictions($selectedPlayer) {
+	global $playerPredictions, $playerPredictionsKO, $teams, $matchesGroups;
+
+	foreach ($playerPredictions as $player => $predictions) {
+		if ($player === $selectedPlayer) {
+			echo '<div class="group-matches group-predictions">';
+			echo '<h2>'.$player.'</h2>';
+	
+			foreach ($predictions as $game) {
+				$resultClass = '';
+				$resultScore = 0;
+				$result = 0;
+				$score = 0;
+	
+				foreach ($matchesGroups as $groupMatch) {
+					foreach ($groupMatch as $k => $v) {
+						if ($v[4] == 'p' && ($v[0] == $game[0] && $v[3] == $game[3])) {
+							if ($v[1] == $game[1] && $v[2] == $game[2]) {
+								$resultScore = 1;
+								$result = 1;
+								$score = 2;
+							} else {
+								if (
+									($game[1] > $game[2] && $v[1] > $v[2]) ||
+									($game[1] < $game[2] && $v[1] < $v[2]) ||
+									($game[1] == $game[2] && $v[1] == $v[2])
+								) {
+									$result = 1;
+								}
+	
+								if ($v[1] == $game[1] || $v[2] == $game[2]) {
+									$score = 1;
+								}
+							}
+	
+							$scoreTotal = ($resultScore * 2) + ($result * 3) + $score;
+							$resultClass = 'f';
+							switch ($scoreTotal)
+							{
+								case 7:
+									$resultClass = 'rs';
+									break;
+								case 4:
+									$resultClass = 'r-s';
+									break;
+								case 3:
+									$resultClass = 'r';
+									break;
+								case 1:
+									$resultClass = 's';
+									break;
+							}
+						}
+					}
+				}
+	
+				echo '<div class="match '. $resultClass .'">';
+					echo '<div class="team-home">'.$game[0].'</div>';
+					echo '<div class="team-flag">'.showFlag($game[0]).'</div>';
+					echo '<div class="team-score">'.$game[1].'</div>';
+					echo '<div class="team-score">'.$game[2].'</div>';
+					echo '<div class="team-flag">'.showFlag($game[3]).'</div>';
+					echo '<div class="team-away">'.$game[3].'</div>';
+				echo '</div>';
+			}
+			echo '</div>';
+			break;
+		}
+
+		// foreach ($playerPredictionsKO[$player] as $game) {
+		// 	if (checkMatch($game[0], $game[3], true)) {
+		// 		echo '<tr>';
+		// 			echo '<td>'.showFlag($game[0]).' '.$game[0].'</td>';
+		// 			echo '<td>'.$game[1].':'.$game[2].'</td>';
+		// 			echo '<td>'.$game[3].' '.showFlag($game[3]).'</td>';
+		// 			echo '<td><span>'.getPoints($game[0], $game[1], $game[2], $game[3], true).'</span></td>';
+		// 		echo '</tr>';
+		// 	}
+		// }
+	}
+}
+
+
+
+function checkMatchPredResult($prediction, $home, $gf, $ga, $away) {
+	$resultScore = 0;
+	$result = 0;
+	$score = 0;
+
+//	if ($) {
+
+//	}
 }
 
 
@@ -1027,10 +1208,41 @@ body {
 	padding: 10px 0;
 	gap: 5px;
 	place-items: center;
+	position: relative;
+}
+.group-predictions .match::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 5px;
 }
 
 .match:last-child {
 	border-bottom: 0;
+}
+
+/* Since I can't linear gradient a single border and border-image applies to all borders lets use a psuedo element instead. */
+.match.rs::before,
+.demo.rs::before {
+	background-color: #090;
+}
+.match.r-s::before,
+.demo.r-s::before {
+	background-image: linear-gradient(to top, #009 50%, #FC0 50%);
+}
+.match.r::before,
+.demo.r::before {
+	background-color: #FC0;
+}
+.match.s::before,
+.demo.s::before {
+	background-color: #009;
+}
+.match.f::before,
+.demo.f::before {
+	background-color: #900;
 }
 
 .team-home {
@@ -1115,6 +1327,7 @@ body {
 
 .group-predictions h2 {
 	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .container > .group {
@@ -1200,6 +1413,8 @@ tr td:first-child {
 .rotate {
 	transform: rotate(180deg);
 }
+
+
 
 @media screen and (max-width: 500px) {
 	.container > table.group {
@@ -1403,9 +1618,89 @@ tr td:first-child {
 .show {
 	height: auto;
 }
+
+.demo {
+	position: relative;
+	padding-left: 20px;
+	margin-bottom: 10px;
+}
+.demo::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 10px;
+}
+
+.help-toggle {
+	position: fixed;
+	top: -20px;
+	right: 7px;
+	font-size: 70px;
+	cursor: pointer;
+}
+.help-box {
+	position: fixed;
+	top: 0;
+	right: 50px;
+	background: rgb(23, 158, 180);
+	z-index: 1;
+	padding: 10px 30px;
+	width: 15%;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: 0 0 10px #fffa;
+	border-top: 0;
+	overflow: hidden;
+	transition: transform .3s ease-in;
+	transform: translateY(-100%);
+}
+.help-box.show {
+	transform: translateY(0);
+}
+.help-box h2 {
+	margin-bottom: 0;
+}
+.help-box h2:first-child {
+	margin-top: 0;
+}
+.help-box h2+p {
+	margin-top: 0;
+}
+
+.override-group-preds .group-predictions {
+	width: 100%;
+}
 </style>
 </head>
 <body>
+<div class="help-toggle">?</div>
+<div class="help-box">
+	<h2>Links</h2>
+	<p>
+		<a href="https://www.colincharlton.net/euro-2020/">Full design</a><br>
+		<a href="https://www.colincharlton.net/euro-2020/?noflash">Just groups and predictions</a><br>
+		<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table">Predictions table only</a>
+	</p>
+
+	<p>
+		<?php
+		foreach ($playerPredictions as $player => $predictions) {
+			echo '<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table=0&preds='.$player.'">'.$player.'\'s Predictions</a> (<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table=1&preds='.$player.'">+ predictions table</a>)<br>';
+		}
+		?>
+	</p>
+
+	<h2>Prediction Colours</h2>
+	<div class="demo rs">Result + score<br>7 points</div>
+	<div class="demo r-s">Result + a score<br>4 points</div>
+	<div class="demo r">Result<br>3 points</div>
+	<div class="demo s">A score<br>1 point</div>
+	<div class="demo f">Nothing<br>0 points</div>
+</div>
+
+
 <?php if (!isset($_GET['noflash'])) { ?>
 <div class="container">
 	<div class="panel-1">
@@ -1576,8 +1871,9 @@ tr td:first-child {
 //foreach ($rss->channel->item as $item) {}
 ?>
 
-<h2>Groups</h2>
+<?php if (!isset($_GET['pred-table'])) { ?><h2>Groups</h2><?php } ?>
 <div class="container">
+	<?php if (!isset($_GET['pred-table'])) { ?>
 	<div class="container groups-container">
 		<?php
 		foreach (array_unique($teams) as $group) {
@@ -1586,31 +1882,53 @@ tr td:first-child {
 		}
 		?>
 	</div>
+	<?php } ?>
 
+	<?php if (isset($_GET['preds'])) { ?>
+		<div class="container override-group-preds">
+			<?php echo showPlayerPredictions($_GET['preds']); ?>
+		</div>
+	<?php } ?>
+
+	<?php if ((isset($_GET['pred-table']) && (int) $_GET['pred-table'] == 1) || !isset($_GET['preds'])) { ?>
 	<div class="container predictions-container">
 		<?php
 		$tbl = sortPredictions();
 		echo showPredictions($tbl);
 		?>
 	</div>
+	<?php } ?>
 </div>
 
+<?php if (!isset($_GET['pred-table'])) { ?>
 <h2 class="js-togPred">Predictions <span>&#9660;</span></h2>
 <div class="container wrap sb js-preds">
 	<?php echo showPredictionMatches(); ?>
 </div>
+<?php } ?>
 
 <script>
+<?php if (!isset($_GET['pred-table'])) { ?>
 const togPred = document.querySelector('.js-togPred');
 const preds = document.querySelector('.js-preds');
 const predsArrow = document.querySelector('.js-togPred span');
+<?php } ?>
+
+const togHelp = document.querySelector('.help-toggle');
+const helpBox = document.querySelector('.help-box');
 
 window.addEventListener('DOMContentLoaded', () => {
+	<?php if (!isset($_GET['pred-table'])) { ?>
 	const predsHeight = preds.getBoundingClientRect().height;
 	preds.style.height = '0px';
 	togPred.addEventListener('click', () => {
 		preds.style.height = preds.style.height == '0px' ? predsHeight+'px' : '0px';
 		predsArrow.classList.toggle('rotate');
+	});
+	<?php } ?>
+
+	togHelp.addEventListener('click', () => {
+		helpBox.classList.toggle('show');
 	});
 });
 </script>
