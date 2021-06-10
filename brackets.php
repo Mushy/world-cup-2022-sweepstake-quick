@@ -425,7 +425,7 @@ $playerPredictions = [
 		['Finland', 0, 1, 'Russia'],
 		['Turkey', 1, 1, 'Wales'],
 		['Italy', 2, 0, 'Switzerland'],
-		['Ukraine', 2, , 'North Macedonia'],
+		['Ukraine', 2, 0, 'North Macedonia'],
 		['Denmark', 1, 3, 'Belgium'],
 		['Netherlands', 2, 0, 'Austria'],
 		['Sweden', 2, 1, 'Slovakia'],
