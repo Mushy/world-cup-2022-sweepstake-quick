@@ -1219,6 +1219,15 @@ function showGroupMatches($group) {
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
 <style>
+::-webkit-scrollbar {
+	width: 5px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(15, 142, 160, .8);
+}
+
 *,
 *::before,
 *::after {
