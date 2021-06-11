@@ -65,45 +65,46 @@ $playerTeams = [
 	'Sweden' => 'Cath',
 ];
 
-// Group match results
-$matchesGroups = [
-	['A' => ['Turkey', 0, 0, 'Italy', 'np']],
-	['A' => ['Wales', 0, 0, 'Switzerland', 'np']],
-	['B' => ['Denmark', 0, 0, 'Finland', 'np']],
-	['B' => ['Belgium', 0, 0, 'Russia', 'np']],
-	['D' => ['England', 0, 0, 'Croatia', 'np']],
-	['C' => ['Austria', 0, 0, 'North Macedonia', 'np']],
-	['C' => ['Netherlands', 0, 0, 'Ukraine', 'np']],
-	['D' => ['Scotland', 0, 0, 'Czech Republic', 'np']],
-	['E' => ['Poland', 0, 0, 'Slovakia', 'np']],
-	['E' => ['Spain', 0, 0, 'Sweden', 'np']],
-	['F' => ['Hungary', 0, 0, 'Portugal', 'np']],
-	['F' => ['France', 0, 0, 'Germany', 'np']],
-	['B' => ['Finland', 0, 0, 'Russia', 'np']],
-	['A' => ['Turkey', 0, 0, 'Wales', 'np']],
-	['A' => ['Italy', 0, 0, 'Switzerland', 'np']],
-	['C' => ['Ukraine', 0, 0, 'North Macedonia', 'np']],
-	['B' => ['Denmark', 0, 0, 'Belgium', 'np']],
-	['C' => ['Netherlands', 0, 0, 'Austria', 'np']],
-	['E' => ['Sweden', 0, 0, 'Slovakia', 'np']],
-	['D' => ['Croatia', 0, 0, 'Czech Republic', 'np']],
-	['D' => ['England', 0, 0, 'Scotland', 'np']],
-	['F' => ['Hungary', 0, 0, 'France', 'np']],
-	['F' => ['Portugal', 0, 0, 'Germany', 'np']],
-	['E' => ['Spain', 0, 0, 'Poland', 'np']],
-	['A' => ['Italy', 0, 0, 'Wales', 'np']],
-	['A' => ['Switzerland', 0, 0, 'Turkey', 'np']],
-	['C' => ['North Macedonia', 0, 0, 'Netherlands', 'np']],
-	['C' => ['Ukraine', 0, 0, 'Austria', 'np']],
-	['B' => ['Russia', 0, 0, 'Denmark', 'np']],
-	['B' => ['Finland', 0, 0, 'Belgium', 'np']],
-	['D' => ['Czech Republic', 0, 0, 'England', 'np']],
-	['D' => ['Croatia', 0, 0, 'Scotland', 'np']],
-	['E' => ['Slovakia', 0, 0, 'Spain', 'np']],
-	['E' => ['Sweden', 0, 0, 'Poland', 'np']],
-	['F' => ['Germany', 0, 0, 'Hungary', 'np']],
-	['F' => ['Portugal', 0, 0, 'France', 'np']],
-];
+// Group match results - now moved into /scores/euro-2020.php to allow people to update using /score-updater.php
+// $matchesGroups = [
+// 	['A' => ['Turkey', 0, 0, 'Italy', 'np']],
+// 	['A' => ['Wales', 0, 0, 'Switzerland', 'np']],
+// 	['B' => ['Denmark', 0, 0, 'Finland', 'np']],
+// 	['B' => ['Belgium', 0, 0, 'Russia', 'np']],
+// 	['D' => ['England', 0, 0, 'Croatia', 'np']],
+// 	['C' => ['Austria', 0, 0, 'North Macedonia', 'np']],
+// 	['C' => ['Netherlands', 0, 0, 'Ukraine', 'np']],
+// 	['D' => ['Scotland', 0, 0, 'Czech Republic', 'np']],
+// 	['E' => ['Poland', 0, 0, 'Slovakia', 'np']],
+// 	['E' => ['Spain', 0, 0, 'Sweden', 'np']],
+// 	['F' => ['Hungary', 0, 0, 'Portugal', 'np']],
+// 	['F' => ['France', 0, 0, 'Germany', 'np']],
+// 	['B' => ['Finland', 0, 0, 'Russia', 'np']],
+// 	['A' => ['Turkey', 0, 0, 'Wales', 'np']],
+// 	['A' => ['Italy', 0, 0, 'Switzerland', 'np']],
+// 	['C' => ['Ukraine', 0, 0, 'North Macedonia', 'np']],
+// 	['B' => ['Denmark', 0, 0, 'Belgium', 'np']],
+// 	['C' => ['Netherlands', 0, 0, 'Austria', 'np']],
+// 	['E' => ['Sweden', 0, 0, 'Slovakia', 'np']],
+// 	['D' => ['Croatia', 0, 0, 'Czech Republic', 'np']],
+// 	['D' => ['England', 0, 0, 'Scotland', 'np']],
+// 	['F' => ['Hungary', 0, 0, 'France', 'np']],
+// 	['F' => ['Portugal', 0, 0, 'Germany', 'np']],
+// 	['E' => ['Spain', 0, 0, 'Poland', 'np']],
+// 	['A' => ['Italy', 0, 0, 'Wales', 'np']],
+// 	['A' => ['Switzerland', 0, 0, 'Turkey', 'np']],
+// 	['C' => ['North Macedonia', 0, 0, 'Netherlands', 'np']],
+// 	['C' => ['Ukraine', 0, 0, 'Austria', 'np']],
+// 	['B' => ['Russia', 0, 0, 'Denmark', 'np']],
+// 	['B' => ['Finland', 0, 0, 'Belgium', 'np']],
+// 	['D' => ['Czech Republic', 0, 0, 'England', 'np']],
+// 	['D' => ['Croatia', 0, 0, 'Scotland', 'np']],
+// 	['E' => ['Slovakia', 0, 0, 'Spain', 'np']],
+// 	['E' => ['Sweden', 0, 0, 'Poland', 'np']],
+// 	['F' => ['Germany', 0, 0, 'Hungary', 'np']],
+// 	['F' => ['Portugal', 0, 0, 'France', 'np']],
+// ];
+require_once('scores/euro-2020.php');
 
 // Test pool
 if (isset($_GET['test-data'])) {
@@ -961,7 +962,7 @@ function showPredictionMatches() {
 
 			foreach ($matchesGroups as $groupMatch) {
 				foreach ($groupMatch as $k => $v) {
-					if ($v[4] == 'p' && ($v[0] == $game[0] && $v[3] == $game[3])) {
+					if ($v[4] != 'np' && ($v[0] == $game[0] && $v[3] == $game[3])) {
 						if ($v[1] == $game[1] && $v[2] == $game[2]) {
 							$resultScore = 1;
 							$result = 1;
@@ -1192,7 +1193,7 @@ function showGroupMatches($group) {
 			foreach ($matchesGroups as $groupMatch) {
 				foreach ($groupMatch as $k => $v) {
 					if ($k === $group) {
-						$output .= '<div class="match">';
+						$output .= '<div class="match '.$v[4].'">';
 							$output .= '<div class="team-home">'.$v[0].'</div>';
 							$output .= '<div class="team-flag">'.showFlag($v[0]).'</div>';
 							$output .= '<div class="team-score">'.$v[1].'</div>';
@@ -1295,6 +1296,18 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 5px;
+}
+
+.panel-1 .match,
+.panel-3 .match {
+	border-left: 4px solid transparent;
+}
+
+.panel-1 .match.l {
+	border-left-color: #090;
+}
+.panel-1 .match.ft {
+	border-left-color: #900;
 }
 
 .match:last-child {
@@ -1746,7 +1759,6 @@ tr td:first-child {
 .help-box h2+p {
 	margin-top: 0;
 }
-	
 .help-box a {
 	color: #EEE;
 	text-decoration: none;
@@ -1754,6 +1766,18 @@ tr td:first-child {
 
 .override-group-preds .group-predictions {
 	width: 100%;
+}
+
+.demoG {
+	margin-bottom: 10px;
+	border-left: 10px solid transparent;
+	padding: 10px;
+}
+.demoG.ml {
+	border-left-color: #090;
+}
+.demoG.ft {
+	border-left-color: #900;
 }
 </style>
 </head>
@@ -1764,7 +1788,8 @@ tr td:first-child {
 	<p>
 		<a href="https://www.colincharlton.net/euro-2020/">Full design</a><br>
 		<a href="https://www.colincharlton.net/euro-2020/?noflash">Just groups and predictions</a><br>
-		<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table">Predictions table only</a>
+		<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table">Predictions table only</a><br>
+		<a href="https://www.colincharlton.net/euro-2020/score-updater.php">Until I get an API, update the scores.</a>
 	</p>
 
 	<p>
@@ -1774,6 +1799,10 @@ tr td:first-child {
 		}
 		?>
 	</p>
+
+	<h2>Side Groups</h2>
+	<div class="demoG ml"> Match live</div>
+	<div class="demoG ft"> Full time</div>
 
 	<h2>Prediction Colours</h2>
 	<div class="demo rs">Result + score<br>7 points</div>
