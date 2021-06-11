@@ -1789,6 +1789,7 @@ tr td:first-child {
 		<a href="https://www.colincharlton.net/euro-2020/">Full design</a><br>
 		<a href="https://www.colincharlton.net/euro-2020/?noflash">Just groups and predictions</a><br>
 		<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table">Predictions table only</a><br>
+		<a href="https://www.colincharlton.net/euro-2020/predictions.php">Submit predictions</a><br>
 		<a href="https://www.colincharlton.net/euro-2020/score-updater.php">Until I get an API, update the scores.</a>
 	</p>
 
