@@ -1746,6 +1746,11 @@ tr td:first-child {
 .help-box h2+p {
 	margin-top: 0;
 }
+	
+.help-box a {
+	color: #EEE;
+	text-decoration: none;
+}
 
 .override-group-preds .group-predictions {
 	width: 100%;
