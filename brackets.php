@@ -1044,7 +1044,7 @@ function showPlayerPredictions($selectedPlayer) {
 	
 				foreach ($matchesGroups as $groupMatch) {
 					foreach ($groupMatch as $k => $v) {
-						if ($v[4] == 'p' && ($v[0] == $game[0] && $v[3] == $game[3])) {
+						if ($v[4] != 'np' && ($v[0] == $game[0] && $v[3] == $game[3])) {
 							if ($v[1] == $game[1] && $v[2] == $game[2]) {
 								$resultScore = 1;
 								$result = 1;
@@ -1216,6 +1216,8 @@ function showGroupMatches($group) {
 <html lang="en">
 <head>
 <title>Euro 2020 Matches</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
 <style>
@@ -1516,11 +1518,7 @@ tr td:first-child {
 
 
 
-@media screen and (max-width: 500px) {
-	.container > table.group {
-		width: 100%;
-	}
-}
+
 
 
 
@@ -1788,6 +1786,75 @@ tr td:first-child {
 .demoG.ft {
 	border-left-color: #900;
 }
+
+
+@media (max-width: 35em) {
+	body {
+		padding: 10px;
+	}
+
+	.help-box {
+		width: auto;
+		overflow-y: scroll;
+		height: 90vh;
+	}
+
+	.predictions-container {
+		width: 100%;
+	}
+
+	.override-group-preds {
+		flex: 1;
+	}
+
+	.container-flash {
+		flex-direction: column;
+	}
+
+	.panel-1 {
+		order: 2;
+	}
+
+	.panel-2 {
+		order: 1;
+		width: 100%;
+	}
+
+	.panel-3 {
+		order: 3;
+	}
+
+	.group-positions {
+		flex-wrap: wrap;
+		justify-content: space-between;
+		row-gap: 15px;
+	}
+
+	.group {
+		width: 48%;
+	}
+
+	.container > table.group {
+		width: 100%;
+	}
+
+	table.group img {
+		display: none;
+	}
+
+	.groups-preds {
+		flex-direction: column;
+	}
+
+	.js-preds {
+		/* I shouldn't hook this for styling but it is 1:10am and I'm being lazy. */
+		flex-direction: column;
+	}
+
+	.group-predictions {
+		width: 100%;
+	}
+}
 </style>
 </head>
 <body>
@@ -1805,7 +1872,7 @@ tr td:first-child {
 	<p>
 		<?php
 		foreach ($playerPredictions as $player => $predictions) {
-			echo '<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table=0&preds='.$player.'">'.$player.'\'s Predictions</a> (<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table=1&preds='.$player.'">+ predictions table</a>)<br>';
+			echo '<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table=0&preds='.$player.'">'.$player.'\'s Predictions</a> (<a href="https://www.colincharlton.net/euro-2020/?noflash&pred-table=1&preds='.$player.'">+table</a>)<br>';
 		}
 		?>
 	</p>
@@ -1824,7 +1891,7 @@ tr td:first-child {
 
 
 <?php if (!isset($_GET['noflash'])) { ?>
-<div class="container">
+<div class="container container-flash">
 	<div class="panel-1">
 		<?php
 		echo showGroupMatches('A');
@@ -1994,7 +2061,7 @@ tr td:first-child {
 ?>
 
 <?php if (!isset($_GET['pred-table'])) { ?><h2>Groups</h2><?php } ?>
-<div class="container">
+<div class="container groups-preds">
 	<?php if (!isset($_GET['pred-table'])) { ?>
 	<div class="container groups-container">
 		<?php
