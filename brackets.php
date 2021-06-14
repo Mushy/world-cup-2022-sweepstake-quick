@@ -1311,14 +1311,22 @@ body {
 
 .panel-1 .match,
 .panel-3 .match {
+	border-right: 4px solid transparent;
 	border-left: 4px solid transparent;
 }
 
 .panel-1 .match.l {
 	border-left-color: #090;
 }
+.panel-3 .match.l {
+	border-right-color: #090;
+}
+
 .panel-1 .match.ft {
 	border-left-color: #900;
+}
+.panel-3 .match.ft {
+	border-right-color: #900;
 }
 
 .match:last-child {
@@ -1853,6 +1861,16 @@ tr td:first-child {
 
 	.group-predictions {
 		width: 100%;
+	}
+
+	.panel-3 .match.l {
+		border-right-color: transparent;
+		border-left-color: #090;
+	}
+
+	.panel-3 .match.ft {
+		border-right-color: transparent;
+		border-left-color: #900;
 	}
 }
 </style>
