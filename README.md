@@ -3,7 +3,7 @@
 ## About
 This is a quick and dirty sweepstake generator for the World Cup 2022 competition for some fun in work. I am not a JS developer nor front end developer so design and responsive are lacking (responsive not even looked at) and the Javascript behind it will make the baby Jesus weep. At some point I will ideally go back and clean up the code... but that isn't very likely unfortunately.
 
-And example of how it looks / works can be found at https://mushy.github.io/sweepstakes-euro-2020/.
+And example of how it looks / works can be found at https://mushy.github.io/world-cup-2022-sweepstake-quick/
 
 ## Functionality
 ### Quick Assign
